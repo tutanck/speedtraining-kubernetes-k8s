@@ -6,14 +6,13 @@ metadata:
     app: speedtraining-back
 spec:
   rules:
-    - host: speedtraining-back-janagbla.apps.codeinlove.fr
-      http: 
+    - host: speedtraining-back-tmodeste.apps.codeinlove.fr
+      http:
         paths:
           - pathType: Prefix
             path: /
-            backend: 
+            backend:
               service:
                 name: speedtraining-back
-                port: 
+                port:
                   number: 80
-            

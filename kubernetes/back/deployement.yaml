@@ -14,11 +14,11 @@ spec:
       name: speedtraining-back
       labels:
         app: speedtraining-back
-    spec: 
+    spec:
       imagePullSecrets:
         - name: pcavezzan.azurecr.io
       containers:
-        - image: pcavezzan.azurecr.io/speedtraining/back:v1
+        - image: pcavezzan.azurecr.io/speedtraining/back:v2
           name: main
           ports:
           - containerPort: 8000
@@ -29,4 +29,16 @@ spec:
             requests:
               cpu: 100m
               memory: 32Mi
-    
+          livenessProbe:
+            httpGet:
+              port: 8000
+              path: /health/liveness
+          readinessProbe:
+            httpGet:
+              port: 8000
+              path: /health/readiness
+          startupProbe:
+            httpGet:
+              port: 8000
+              path: /health/liveness
+            failureThreshold: 20
