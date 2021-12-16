@@ -4,7 +4,7 @@ try {
   const conf = config();
   const router = new Router();
   router.get("/", (context) => {
-    context.response.body = conf.MESSAGE;
+    context.response.body = conf.MESSAGE || "Hello World !";
   });
 
   const app = new Application();
