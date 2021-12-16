@@ -6,7 +6,7 @@ metadata:
     app: speedtraining-back
 spec:
   rules:
-    - host: speedtraining-back-tmodeste.apps.codeinlove.fr
+    - host: speedtraining-back-mferraina.apps.codeinlove.fr
       http:
         paths:
           - pathType: Prefix
