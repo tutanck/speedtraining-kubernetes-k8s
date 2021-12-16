@@ -6,7 +6,7 @@ metadata:
     app: speedtraining-front
 spec:
   rules:
-    - host: speedtraining-front-nbardoux.apps.codeinlove.fr
+    - host: speedtraining-front-janagbla.apps.codeinlove.fr
       http:
         paths:
           - pathType: Prefix
@@ -16,3 +16,4 @@ spec:
                 name: speedtraining-front
                 port:
                   number: 80
+          

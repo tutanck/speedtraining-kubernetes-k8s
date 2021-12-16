@@ -4,13 +4,15 @@ metadata:
   name: speedtraining-back
   labels:
     app: speedtraining-back
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-    - host: speedtraining-back-nbardoux.apps.codeinlove.fr
+    - host: speedtraining-front-janagbla.apps.codeinlove.fr
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: /api(/|$)(.*)
             backend:
               service:
                 name: speedtraining-back

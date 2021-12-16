@@ -18,7 +18,7 @@ spec:
       imagePullSecrets:
         - name: pcavezzan.azurecr.io
       containers:
-        - image: pcavezzan.azurecr.io/speedtraining/back:v2
+        - image: pcavezzan.azurecr.io/speedtraining/back:v3
           name: main
           ports:
           - containerPort: 8000
