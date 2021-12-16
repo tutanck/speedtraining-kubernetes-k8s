@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
-     this.httpService.getMessage().subscribe(res=>console.log(res));
-    
+    this.message$ = this.httpService.getMessage();
   }
 }
