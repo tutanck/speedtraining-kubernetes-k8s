@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: speedtraining-back
+  labels:
+    app: speedtraining-back
+spec:
+  rules:
+    - host: speedtraining-back-janagbla.apps.codeinlove.fr
+      http: 
+        paths:
+          - pathType: Prefix
+            path: /
+            backend: 
+              service:
+                name: speedtraining-back
+                port: 
+                  number: 80
+            

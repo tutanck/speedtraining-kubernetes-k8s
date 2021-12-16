@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speedtraining-back
+  labels:
+    app: speedtraining-back
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: speedtraining-back
+  template:
+    metadata:
+      name: speedtraining-back
+      labels:
+        app: speedtraining-back
+    spec: 
+      imagePullSecrets:
+        - name: pcavezzan.azurecr.io
+      containers:
+        - image: pcavezzan.azurecr.io/speedtraining/back:v1
+          name: main
+          ports:
+          - containerPort: 8000
+          resources:
+            limits:
+              cpu: 200m
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 32Mi
+    
