@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: speedtraining-front
+  labels:
+    app: speedtraining-front
+spec:
+  selector:
+    app: speedtraining-front
+  ports:
+    - port: 80
+      targetPort: 8080

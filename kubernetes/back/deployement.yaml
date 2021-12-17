@@ -5,7 +5,7 @@ metadata:
   labels:
     app: speedtraining-back
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: speedtraining-back
@@ -15,11 +15,41 @@ spec:
       labels:
         app: speedtraining-back
     spec:
+      volumes:
+        - name: speedtraining-shared
+          persistentVolumeClaim:
+            claimName: init-claim
+      initContainers:
+        - name: speedtraining-config-init
+          image: ubuntu:18.04
+          command:
+            - bash
+            - -c
+            - |
+              #!/bin/bash
+              if [ -f /tmp/app/.env ]; then
+                echo "Config file already loaded"
+              else
+                echo "Directory is empty, initializing frontend config"
+                cat << EOF > /tmp/app/.env
+                MESSAGE=Hello Worldaaaz
+                PORT=8000
+              EOF
+                sleep 10
+              fi
+              exit 0
+          volumeMounts:
+            - mountPath: /tmp/app
+              name: speedtraining-shared
       imagePullSecrets:
         - name: pcavezzan.azurecr.io
       containers:
-        - image: pcavezzan.azurecr.io/speedtraining/back:v2
+        - image: pcavezzan.azurecr.io/speedtraining/back:v3
           name: main
+          volumeMounts:
+            - mountPath: /app/.env
+              name: speedtraining-shared
+              subPath: .env
           ports:
           - containerPort: 8000
           resources:

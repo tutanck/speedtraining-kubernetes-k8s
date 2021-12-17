@@ -1,20 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: speedtraining-back
+  name: speedtraining-front
   labels:
-    app: speedtraining-back
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    app: speedtraining-front
 spec:
   rules:
     - host: speedtraining-front-tmodeste.apps.codeinlove.fr
       http:
         paths:
           - pathType: Prefix
-            path: /api(/|$)(.*)
+            path: /
             backend:
               service:
-                name: speedtraining-back
+                name: speedtraining-front
                 port:
                   number: 80
