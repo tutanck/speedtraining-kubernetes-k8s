@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-    - host: speedtraining-front-janagbla.apps.codeinlove.fr
+    - host: speedtraining-front-tmodeste.apps.codeinlove.fr
       http:
         paths:
           - pathType: Prefix
