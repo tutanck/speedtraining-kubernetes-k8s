@@ -15,11 +15,35 @@ spec:
       labels:
         app: speedtraining-back
     spec:
+      volumes:
+        - name: speedtraining-shared
+          emptyDir: {}
+
+      initContainers:
+        - name: speedtraining-config-init
+          image: ubuntu:18.04
+          command:
+            - bash
+            - -c
+            - |
+              cat << EOF > /tmp/app/.env
+              MESSAGE=Hello Worldaaaz
+              PORT=8000
+              EOF
+              sleep 10
+              exit 0
+          volumeMounts:
+            - mountPath: /tmp/app
+              name: speedtraining-shared
       imagePullSecrets:
         - name: pcavezzan.azurecr.io
       containers:
         - image: pcavezzan.azurecr.io/speedtraining/back:v3
           name: main
+          volumeMounts:
+            - mountPath: /app/.env
+              name: speedtraining-shared
+              subPath: .env
           ports:
           - containerPort: 8000
           resources:

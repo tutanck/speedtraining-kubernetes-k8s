@@ -16,4 +16,3 @@ spec:
                 name: speedtraining-front
                 port:
                   number: 80
-          
